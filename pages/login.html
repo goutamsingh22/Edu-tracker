@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduTracker Pro - Secure login portal for students, faculty, and administrators">
+    <title>Login - EduTracker Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fedutracker9740back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background min-h-screen flex items-center justify-center p-4">
+    <!-- Background Pattern -->
+    <div class="fixed inset-0 z-0 opacity-5">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="currentColor" stroke-width="1" class="text-primary-600"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+        </svg>
+    </div>
+
+    <!-- Main Login Container -->
+    <div class="relative z-10 w-full max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-8 items-center">
+            
+            <!-- Left Section - Branding & Information -->
+            <div class="hidden lg:block space-y-8">
+                <!-- Logo and Brand -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <svg class="w-12 h-12 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                            <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M24 24L32 18M24 24L16 18M24 24V36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h1 class="font-heading text-4xl font-bold text-primary-600">EduTracker Pro</h1>
+                    </div>
+                    <p class="text-xl text-text-secondary font-body">Streamlined Educational Management System</p>
+                </div>
+
+                <!-- Feature Highlights -->
+                <div class="space-y-6 bg-surface rounded-card p-8 shadow-academic-md border border-secondary-200">
+                    <h2 class="font-heading text-2xl font-semibold text-text-primary">Comprehensive Academic Tracking</h2>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_109ebb875-1765301820932.png" alt="Attendance tracking icon" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <h3 class="font-body font-semibold text-text-primary">Digital Attendance</h3>
+                                <p class="text-sm text-text-secondary">Real-time attendance marking with offline capabilities</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_139b60728-1764644054458.png" alt="Assignment management icon" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <h3 class="font-body font-semibold text-text-primary">Assignment Management</h3>
+                                <p class="text-sm text-text-secondary">Streamlined submission and grading workflow</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-success-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19db4e45b-1764678162633.png" alt="Analytics icon" class="w-6 h-6">
+                            </div>
+                            <div>
+                                <h3 class="font-body font-semibold text-text-primary">Performance Analytics</h3>
+                                <p class="text-sm text-text-secondary">Comprehensive insights into academic progress</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trust Signals -->
+                <div class="flex flex-wrap items-center gap-6 pt-4">
+                    <div class="flex items-center gap-2 text-sm text-text-secondary">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ea16033d-1764659045894.png" alt="Security certification icon" class="w-5 h-5">
+                        <span>ISO 27001 Certified</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-text-secondary">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16f686d90-1764679614763.png" alt="Data privacy icon" class="w-5 h-5">
+                        <span>FERPA Compliant</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-sm text-text-secondary">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10695e0fb-1765953438565.png" alt="Educational standards icon" class="w-5 h-5">
+                        <span>GDPR Protected</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Section - Login Form -->
+            <div class="w-full">
+                <div class="bg-surface rounded-card shadow-academic-lg border border-secondary-200 p-8 md:p-10">
+                    
+                    <!-- Mobile Logo -->
+                    <div class="lg:hidden mb-8 text-center">
+                        <div class="flex items-center justify-center gap-3 mb-2">
+                            <svg class="w-10 h-10 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                                <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M24 24L32 18M24 24L16 18M24 24V36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <h1 class="font-heading text-3xl font-bold text-primary-600">EduTracker Pro</h1>
+                        </div>
+                        <p class="text-text-secondary">Educational Management System</p>
+                    </div>
+
+                    <!-- Form Header -->
+                    <div class="mb-8">
+                        <h2 class="font-heading text-3xl font-bold text-text-primary mb-2">Welcome Back</h2>
+                        <p class="text-text-secondary">Sign in to access your academic dashboard</p>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="loginForm" class="space-y-6" novalidate>
+                        
+                        <!-- Role Selection -->
+                        <div>
+                            <label for="userRole" class="block text-sm font-medium text-text-primary mb-2">
+                                Select Your Role
+                            </label>
+                            <div class="relative">
+                                <select id="userRole" name="userRole" required
+                                    class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                                    <option value="">Choose your role...</option>
+                                    <option value="student">Student</option>
+                                    <option value="faculty">Faculty</option>
+                                    <option value="administrator">Administrator</option>
+                                </select>
+                                <!-- <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" 
+                                    class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"> -->
+                            </div>
+                            <p id="roleError" class="mt-1 text-sm text-error-600 hidden">Please select your role</p>
+                        </div>
+
+                        <!-- Email Input -->
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-text-primary mb-2">
+                                Email Address
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <!-- <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a768d64d-1765469675922.png" alt="Email icon" class="w-5 h-5"> -->
+                                </div>
+                                <input type="email" id="email" name="email" required
+                                    placeholder="your.email@institution.edu"
+                                    class="input-base w-full pl-12 focus:ring-2 focus:ring-primary-600 focus:border-primary-600"
+                                    autocomplete="email">
+                            </div>
+                            <p id="emailError" class="mt-1 text-sm text-error-600 hidden">Please enter a valid email address</p>
+                        </div>
+
+                        <!-- Password Input -->
+                        <div>
+                            <label for="password" class="block text-sm font-medium text-text-primary mb-2">
+                                Password
+                            </label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <!-- <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15c8da1cb-1764656740974.png" alt="Password icon" class="w-5 h-5"> -->
+                                </div>
+                                <input type="password" id="password" name="password" required
+                                    placeholder="Enter your password"
+                                    class="input-base w-full pl-12 pr-12 focus:ring-2 focus:ring-primary-600 focus:border-primary-600"
+                                    autocomplete="current-password">
+                                <button type="button" id="togglePassword" 
+                                    class="absolute inset-y-0 right-0 pr-4 flex items-center touch-target"
+                                    aria-label="Toggle password visibility">
+                                    <!-- <img id="passwordIcon" src="https://img.rocket.new/generatedImages/rocket_gen_img_148e1a884-1765409696333.png" alt="Show password icon" class="w-5 h-5"> -->
+                                </button>
+                            </div>
+                            <p id="passwordError" class="mt-1 text-sm text-error-600 hidden">Password is required</p>
+                        </div>
+
+                        <!-- Remember Me & Forgot Password -->
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="rememberMe" name="rememberMe"
+                                    class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                <label for="rememberMe" class="ml-2 text-sm text-text-secondary cursor-pointer">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="javascript:void(0)" class="text-sm font-medium text-primary-600 hover:text-primary-700 transition-academic">
+                                Forgot password?
+                            </a>
+                        </div>
+
+                        <!-- Error Message Display -->
+                        <div id="loginError" class="hidden bg-error-50 border border-error-200 rounded-lg p-4">
+                            <div class="flex items-start gap-3">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_192840b93-1764821428515.png" alt="Error icon" class="w-5 h-5 flex-shrink-0 mt-0.5">
+                                <div>
+                                    <h4 class="text-sm font-semibold text-error-700 mb-1">Login Failed</h4>
+                                    <p id="loginErrorMessage" class="text-sm text-error-600"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" id="loginButton"
+                            class="btn-base w-full bg-primary-600 text-white hover:bg-primary-700 active-press disabled:opacity-50 disabled:cursor-not-allowed">
+                            <span id="loginButtonText">Sign In</span>
+                            <svg id="loginSpinner" class="hidden animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+
+                        <!-- Registration Link -->
+                        <div class="text-center pt-4 border-t border-secondary-200">
+                            <p class="text-sm text-text-secondary">
+                                Don't have an account? 
+                                <!-- <a href="javascript:void(0)" class="font-medium text-primary-600 hover:text-primary-700 transition-academic"> -->
+                                <a href="signup.html" class="font-medium text-primary-600 hover:text-primary-700 transition-academic">
+                                Register here
+                                </a>
+                            </p>
+                        </div>
+                    </form>
+
+                    <!-- Mobile Trust Signals -->
+                    <div class="lg:hidden mt-8 pt-6 border-t border-secondary-200">
+                        <div class="flex flex-wrap justify-center gap-4 text-xs text-text-secondary">
+                            <div class="flex items-center gap-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ea16033d-1764659045894.png" alt="Security icon" class="w-4 h-4">
+                                <span>ISO 27001</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_16f686d90-1764679614763.png" alt="Privacy icon" class="w-4 h-4">
+                                <span>FERPA</span>
+                            </div>
+                            <div class="flex items-center gap-1">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1fef70ad7-1764656311515.png" alt="Compliance icon" class="w-4 h-4">
+                                <span>GDPR</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Help -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-text-secondary">
+                        Need help? Contact 
+                        <a href="javascript:void(0)" class="text-primary-600 hover:text-primary-700 font-medium transition-academic">
+                            support@edutracker.edu
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Form Validation and Interaction -->
+    <script>
+        // Mock credentials for testing
+        const mockCredentials = {
+            student: { email: 'student@college.edu', password: 'student123' },
+            faculty: { email: 'faculty@college.edu', password: 'faculty123' },
+            administrator: { email: 'admin@college.edu', password: 'admin123' }
+        };
+
+        // Form elements
+        const loginForm = document.getElementById('loginForm');
+        const userRoleSelect = document.getElementById('userRole');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const togglePasswordBtn = document.getElementById('togglePassword');
+        const passwordIcon = document.getElementById('passwordIcon');
+        const loginButton = document.getElementById('loginButton');
+        const loginButtonText = document.getElementById('loginButtonText');
+        const loginSpinner = document.getElementById('loginSpinner');
+        const loginError = document.getElementById('loginError');
+        const loginErrorMessage = document.getElementById('loginErrorMessage');
+
+        // Error message elements
+        const roleError = document.getElementById('roleError');
+        const emailError = document.getElementById('emailError');
+        const passwordError = document.getElementById('passwordError');
+
+        // Toggle password visibility
+        togglePasswordBtn.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            if (type === 'text') {
+                passwordIcon.src = 'https://api.iconify.design/mdi:eye-off-outline.svg?color=%2364748B';
+                passwordIcon.alt = 'Hide password icon';
+            } else {
+                passwordIcon.src = 'https://api.iconify.design/mdi:eye-outline.svg?color=%2364748B';
+                passwordIcon.alt = 'Show password icon';
+            }
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Clear error messages
+        function clearErrors() {
+            roleError.classList.add('hidden');
+            emailError.classList.add('hidden');
+            passwordError.classList.add('hidden');
+            loginError.classList.add('hidden');
+            
+            userRoleSelect.classList.remove('border-error-600');
+            emailInput.classList.remove('border-error-600');
+            passwordInput.classList.remove('border-error-600');
+        }
+
+        // Real-time validation
+        userRoleSelect.addEventListener('change', function() {
+            if (this.value) {
+                roleError.classList.add('hidden');
+                this.classList.remove('border-error-600');
+            }
+        });
+
+        emailInput.addEventListener('input', function() {
+            if (validateEmail(this.value)) {
+                emailError.classList.add('hidden');
+                this.classList.remove('border-error-600');
+            }
+        });
+
+        passwordInput.addEventListener('input', function() {
+            if (this.value.length > 0) {
+                passwordError.classList.add('hidden');
+                this.classList.remove('border-error-600');
+            }
+        });
+
+        // Form submission
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            clearErrors();
+
+            const role = userRoleSelect.value;
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+            let hasError = false;
+
+            // Validate role
+            if (!role) {
+                roleError.classList.remove('hidden');
+                userRoleSelect.classList.add('border-error-600');
+                hasError = true;
+            }
+
+            // Validate email
+            if (!email) {
+                emailError.textContent = 'Email address is required';
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-error-600');
+                hasError = true;
+            } else if (!validateEmail(email)) {
+                emailError.textContent = 'Please enter a valid email address';
+                emailError.classList.remove('hidden');
+                emailInput.classList.add('border-error-600');
+                hasError = true;
+            }
+
+            // Validate password
+            if (!password) {
+                passwordError.classList.remove('hidden');
+                passwordInput.classList.add('border-error-600');
+                hasError = true;
+            }
+
+            if (hasError) {
+                return;
+            }
+
+            // Show loading state
+            loginButton.disabled = true;
+            loginButtonText.textContent = 'Signing in...';
+            loginSpinner.classList.remove('hidden');
+
+            // Simulate authentication delay
+            setTimeout(function() {
+                // Check credentials
+                const validCredentials = mockCredentials[role];
+                
+                if (validCredentials && email === validCredentials.email && password === validCredentials.password) {
+                    // Store user info in localStorage
+                    localStorage.setItem('userRole', role);
+                    localStorage.setItem('userEmail', email);
+                    localStorage.setItem('isLoggedIn', 'true');
+                    localStorage.setItem('loginTime', new Date().toISOString());
+
+                    // Redirect based on role
+                    if (role === 'student') {
+                        window.location.href = 'student_dashboard.html';
+                    } else if (role === 'faculty') {
+                        window.location.href = 'faculty_dashboard.html';
+                    } else if (role === 'administrator') {
+                        window.location.href = 'faculty_dashboard.html'; // Admin uses faculty dashboard
+                    }
+                } else {
+                    // Show error message
+                    loginErrorMessage.textContent = 'Invalid email or password. Please check your credentials and try again.';
+                    loginError.classList.remove('hidden');
+                    
+                    // Reset button state
+                    loginButton.disabled = false;
+                    loginButtonText.textContent = 'Sign In';
+                    loginSpinner.classList.add('hidden');
+                }
+            }, 1500);
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (isLoggedIn === 'true' && userRole) {
+                if (userRole === 'student') {
+                    window.location.href = 'student_dashboard.html';
+                } else if (userRole === 'faculty' || userRole === 'administrator') {
+                    window.location.href = 'faculty_dashboard.html';
+                }
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

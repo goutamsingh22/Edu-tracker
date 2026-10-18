@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduTracker Pro - Comprehensive assignment management system for faculty">
+    <title>Assignment Management - EduTracker Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fedutracker9740back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background min-h-screen">
+    
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-secondary-200 sticky top-0 z-navigation shadow-academic-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Brand -->
+                <div class="flex items-center gap-3">
+                    <a href="faculty_dashboard.html" class="flex items-center gap-3 transition-academic hover:opacity-80">
+                        <svg class="w-8 h-8 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                            <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M24 24L32 18M24 24L16 18M24 24V36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span class="font-heading text-xl font-bold text-primary-600 hidden sm:block">EduTracker Pro</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <a href="faculty_dashboard.html" class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-secondary-50 transition-academic">
+                        <span class="flex items-center gap-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10ccfe998-1764693353123.png" alt="Dashboard icon" class="w-5 h-5">
+                            <span class="font-body font-medium">Dashboard</span>
+                        </span>
+                    </a>
+                    <a href="attendance_management.html" class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-secondary-50 transition-academic">
+                        <span class="flex items-center gap-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f4803e13-1765047647414.png" alt="Attendance icon" class="w-5 h-5">
+                            <span class="font-body font-medium">Attendance</span>
+                        </span>
+                    </a>
+                    <a href="assignment_management.html" class="px-4 py-2 rounded-lg text-primary-600 bg-primary-50 transition-academic">
+                        <span class="flex items-center gap-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c13375db-1764650244021.png" alt="Assignments icon" class="w-5 h-5">
+                            <span class="font-body font-medium">Assignments</span>
+                        </span>
+                    </a>
+                    <a href="course_management.html" class="px-4 py-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-secondary-50 transition-academic">
+                        <span class="flex items-center gap-2">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d9605b5f-1764677495796.png" alt="Courses icon" class="w-5 h-5">
+                            <span class="font-body font-medium">Courses</span>
+                        </span>
+                    </a>
+                </nav>
+
+                <!-- User Menu -->
+                <div class="flex items-center gap-3">
+                    <button type="button" class="touch-target rounded-lg hover:bg-secondary-50 transition-academic p-2" aria-label="Notifications">
+                        <div class="relative">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_173f2b762-1764656741096.png" alt="Notifications icon" class="w-6 h-6">
+                            <span class="absolute -top-1 -right-1 w-4 h-4 bg-error-600 rounded-full text-white text-xs flex items-center justify-center font-caption">3</span>
+                        </div>
+                    </button>
+                    <div class="relative">
+                        <button type="button" id="userMenuButton" class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-secondary-50 transition-academic" aria-label="User menu">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                                <span class="font-body font-semibold text-primary-600 text-sm">FJ</span>
+                            </div>
+                            <span class="hidden sm:block font-body font-medium text-text-primary">Dr. Johnson</span>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_117a4830d-1764671721354.png" alt="Menu dropdown icon" class="w-5 h-5">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button type="button" id="mobileMenuButton" class="md:hidden touch-target rounded-lg hover:bg-secondary-50 transition-academic p-2" aria-label="Open mobile menu">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1093c5d5c-1764650234400.png" alt="Mobile menu icon" class="w-6 h-6">
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-secondary-200 bg-surface">
+            <nav class="px-4 py-3 space-y-1">
+                <a href="faculty_dashboard.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-secondary-50 transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10ccfe998-1764693353123.png" alt="Dashboard icon" class="w-5 h-5">
+                    <span class="font-body font-medium">Dashboard</span>
+                </a>
+                <a href="attendance_management.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-secondary-50 transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f4803e13-1765047647414.png" alt="Attendance icon" class="w-5 h-5">
+                    <span class="font-body font-medium">Attendance</span>
+                </a>
+                <a href="assignment_management.html" class="flex items-center gap-3 px-4 py-3 rounded-lg bg-primary-50 text-primary-600 transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c13375db-1764650244021.png" alt="Assignments icon" class="w-5 h-5">
+                    <span class="font-body font-medium">Assignments</span>
+                </a>
+                <a href="course_management.html" class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-secondary-50 transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d9605b5f-1764677495796.png" alt="Courses icon" class="w-5 h-5">
+                    <span class="font-body font-medium">Courses</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Page Header -->
+        <div class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="font-heading text-3xl md:text-4xl font-bold text-text-primary mb-2">Assignment Management</h1>
+                    <p class="text-text-secondary font-body">Create, distribute, and grade assignments across all courses</p>
+                </div>
+                <button type="button" id="createAssignmentBtn" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press shadow-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_136c02a7b-1765603334044.png" alt="Add icon" class="w-5 h-5">
+                    <span>Create Assignment</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Overview -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-lg bg-primary-50 flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_139b60728-1764644054458.png" alt="Total assignments icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-xs font-caption text-success-600 bg-success-50 px-2 py-1 rounded">+12%</span>
+                </div>
+                <h3 class="font-body text-2xl font-bold text-text-primary mb-1">24</h3>
+                <p class="text-sm text-text-secondary">Total Assignments</p>
+            </div>
+
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-lg bg-warning-50 flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_184846212-1764700744475.png" alt="Pending grading icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-xs font-caption text-warning-600 bg-warning-50 px-2 py-1 rounded">Urgent</span>
+                </div>
+                <h3 class="font-body text-2xl font-bold text-text-primary mb-1">47</h3>
+                <p class="text-sm text-text-secondary">Pending Grading</p>
+            </div>
+
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-lg bg-success-50 flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1969fd0ee-1765447575973.png" alt="Graded icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-xs font-caption text-text-secondary bg-secondary-100 px-2 py-1 rounded">This week</span>
+                </div>
+                <h3 class="font-body text-2xl font-bold text-text-primary mb-1">156</h3>
+                <p class="text-sm text-text-secondary">Graded This Week</p>
+            </div>
+
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="flex items-center justify-between mb-3">
+                    <div class="w-12 h-12 rounded-lg bg-accent-50 flex items-center justify-center">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1ba02b142-1765565772343.png" alt="Average grade icon" class="w-6 h-6">
+                    </div>
+                    <span class="text-xs font-caption text-success-600 bg-success-50 px-2 py-1 rounded">+3.2%</span>
+                </div>
+                <h3 class="font-body text-2xl font-bold text-text-primary mb-1">82.5%</h3>
+                <p class="text-sm text-text-secondary">Average Grade</p>
+            </div>
+        </div>
+
+        <!-- Filters and Search -->
+        <div class="bg-surface rounded-card border border-secondary-200 p-4 mb-6 shadow-academic-sm">
+            <div class="flex flex-col lg:flex-row gap-4">
+                <!-- Search -->
+                <div class="flex-1">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_194eeb027-1764656322629.png" alt="Search icon" class="w-5 h-5">
+                        </div>
+                        <input type="text" id="searchAssignments" placeholder="Search assignments by title, course, or student..." 
+                            class="input-base w-full pl-10 pr-10">
+                        <button type="button" id="clearSearch" class="absolute inset-y-0 right-0 pr-3 flex items-center touch-target hidden" aria-label="Clear search">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_112de4417-1764690521153.png" alt="Clear search icon" class="w-5 h-5">
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Course Filter -->
+                <div class="w-full lg:w-48">
+                    <select id="courseFilter" class="input-base w-full appearance-none pr-10 cursor-pointer">
+                        <option value="">All Courses</option>
+                        <option value="cs101">CS 101 - Intro to Programming</option>
+                        <option value="cs201">CS 201 - Data Structures</option>
+                        <option value="cs301">CS 301 - Algorithms</option>
+                        <option value="cs401">CS 401 - Software Engineering</option>
+                    </select>
+                </div>
+
+                <!-- Status Filter -->
+                <div class="w-full lg:w-48">
+                    <select id="statusFilter" class="input-base w-full appearance-none pr-10 cursor-pointer">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="pending">Pending Review</option>
+                        <option value="graded">Graded</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                </div>
+
+                <!-- Filter Button -->
+                <button type="button" id="filterBtn" class="btn-base bg-secondary-100 text-text-primary hover:bg-secondary-200 active-press">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_144fb5fa5-1765917817936.png" alt="Filter icon" class="w-5 h-5">
+                    <span class="hidden sm:inline">Filters</span>
+                </button>
+
+                <!-- Reset Button -->
+                <button type="button" id="resetFilters" class="btn-base bg-surface border border-secondary-300 text-text-primary hover:bg-secondary-50 active-press">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_148148b2b-1765208784425.png" alt="Reset icon" class="w-5 h-5">
+                </button>
+            </div>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="bg-surface rounded-card border border-secondary-200 mb-6 shadow-academic-sm overflow-hidden">
+            <div class="border-b border-secondary-200">
+                <nav class="flex overflow-x-auto" aria-label="Assignment tabs">
+                    <button type="button" class="tab-button active px-6 py-4 font-body font-medium text-primary-600 border-b-2 border-primary-600 whitespace-nowrap transition-academic" data-tab="active">
+                        Active Assignments
+                        <span class="ml-2 px-2 py-0.5 bg-primary-100 text-primary-600 rounded-full text-xs font-caption">8</span>
+                    </button>
+                    <button type="button" class="tab-button px-6 py-4 font-body font-medium text-text-secondary hover:text-text-primary border-b-2 border-transparent hover:border-secondary-300 whitespace-nowrap transition-academic" data-tab="pending">
+                        Pending Review
+                        <span class="ml-2 px-2 py-0.5 bg-warning-100 text-warning-600 rounded-full text-xs font-caption">47</span>
+                    </button>
+                    <button type="button" class="tab-button px-6 py-4 font-body font-medium text-text-secondary hover:text-text-primary border-b-2 border-transparent hover:border-secondary-300 whitespace-nowrap transition-academic" data-tab="completed">
+                        Completed
+                        <span class="ml-2 px-2 py-0.5 bg-success-100 text-success-600 rounded-full text-xs font-caption">16</span>
+                    </button>
+                    <button type="button" class="tab-button px-6 py-4 font-body font-medium text-text-secondary hover:text-text-primary border-b-2 border-transparent hover:border-secondary-300 whitespace-nowrap transition-academic" data-tab="templates">
+                        Templates
+                        <span class="ml-2 px-2 py-0.5 bg-secondary-100 text-text-secondary rounded-full text-xs font-caption">5</span>
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Active Assignments Tab Content -->
+        <div id="activeTab" class="tab-content">
+            <!-- Desktop Table View -->
+            <div class="hidden lg:block bg-surface rounded-card border border-secondary-200 shadow-academic-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-secondary-50 border-b border-secondary-200">
+                            <tr>
+                                <th class="px-6 py-4 text-left">
+                                    <input type="checkbox" id="selectAllActive" class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                </th>
+                                <th class="px-6 py-4 text-left text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Assignment</th>
+                                <th class="px-6 py-4 text-left text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Course</th>
+                                <th class="px-6 py-4 text-left text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Due Date</th>
+                                <th class="px-6 py-4 text-left text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Submissions</th>
+                                <th class="px-6 py-4 text-left text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-right text-xs font-caption font-semibold text-text-primary uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-secondary-200" id="activeAssignmentsTable">
+                            <!-- Assignment rows will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Mobile Card View -->
+            <div class="lg:hidden space-y-4" id="activeAssignmentsMobile">
+                <!-- Assignment cards will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Pending Review Tab Content -->
+        <div id="pendingTab" class="tab-content hidden">
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="text-center py-8">
+                    <div class="w-16 h-16 bg-warning-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_184846212-1764700744475.png" alt="Pending review icon" class="w-8 h-8">
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold text-text-primary mb-2">47 Submissions Pending Review</h3>
+                    <p class="text-text-secondary mb-6">Review and grade student submissions to keep your workflow current</p>
+                    <button type="button" class="btn-base bg-warning-600 text-white hover:bg-warning-700 active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17ad427d5-1764649038155.png" alt="Review icon" class="w-5 h-5">
+                        <span>Start Grading</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Completed Tab Content -->
+        <div id="completedTab" class="tab-content hidden">
+            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm">
+                <div class="text-center py-8">
+                    <div class="w-16 h-16 bg-success-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_100929026-1765701301734.png" alt="Completed icon" class="w-8 h-8">
+                    </div>
+                    <h3 class="font-heading text-xl font-semibold text-text-primary mb-2">16 Completed Assignments</h3>
+                    <p class="text-text-secondary mb-6">All submissions graded and feedback provided</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Templates Tab Content -->
+        <div id="templatesTab" class="tab-content hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Template cards will be populated by JavaScript -->
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Create Assignment Modal -->
+    <div id="createAssignmentModal" class="hidden fixed inset-0 z-modal backdrop-academic">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-surface rounded-modal shadow-academic-xl max-w-3xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <!-- Modal Header -->
+                <div class="sticky top-0 bg-surface border-b border-secondary-200 px-6 py-4 flex items-center justify-between z-10">
+                    <h2 class="font-heading text-2xl font-bold text-text-primary">Create New Assignment</h2>
+                    <button type="button" id="closeModalBtn" class="touch-target rounded-lg hover:bg-secondary-100 transition-academic p-2" aria-label="Close modal">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1554e9426-1764677494627.png" alt="Close icon" class="w-6 h-6">
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <form id="createAssignmentForm" class="p-6 space-y-6">
+                    <!-- Assignment Title -->
+                    <div>
+                        <label for="assignmentTitle" class="block text-sm font-medium text-text-primary mb-2">
+                            Assignment Title <span class="text-error-600">*</span>
+                        </label>
+                        <input type="text" id="assignmentTitle" name="assignmentTitle" required
+                            placeholder="e.g., Data Structures Project - Binary Search Tree Implementation"
+                            class="input-base w-full">
+                    </div>
+
+                    <!-- Course Selection -->
+                    <div>
+                        <label for="assignmentCourse" class="block text-sm font-medium text-text-primary mb-2">
+                            Select Course <span class="text-error-600">*</span>
+                        </label>
+                        <select id="assignmentCourse" name="assignmentCourse" required class="input-base w-full appearance-none pr-10 cursor-pointer">
+                            <option value="">Choose a course...</option>
+                            <option value="cs101">CS 101 - Introduction to Programming</option>
+                            <option value="cs201">CS 201 - Data Structures</option>
+                            <option value="cs301">CS 301 - Algorithms</option>
+                            <option value="cs401">CS 401 - Software Engineering</option>
+                        </select>
+                    </div>
+
+                    <!-- Description -->
+                    <div>
+                        <label for="assignmentDescription" class="block text-sm font-medium text-text-primary mb-2">
+                            Description <span class="text-error-600">*</span>
+                        </label>
+                        <textarea id="assignmentDescription" name="assignmentDescription" required rows="4"
+                            placeholder="Provide detailed instructions, requirements, and grading criteria..."
+                            class="input-base w-full resize-none"></textarea>
+                    </div>
+
+                    <!-- Due Date and Time -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label for="dueDate" class="block text-sm font-medium text-text-primary mb-2">
+                                Due Date <span class="text-error-600">*</span>
+                            </label>
+                            <input type="date" id="dueDate" name="dueDate" required class="input-base w-full">
+                        </div>
+                        <div>
+                            <label for="dueTime" class="block text-sm font-medium text-text-primary mb-2">
+                                Due Time <span class="text-error-600">*</span>
+                            </label>
+                            <input type="time" id="dueTime" name="dueTime" required class="input-base w-full">
+                        </div>
+                    </div>
+
+                    <!-- Points -->
+                    <div>
+                        <label for="assignmentPoints" class="block text-sm font-medium text-text-primary mb-2">
+                            Total Points <span class="text-error-600">*</span>
+                        </label>
+                        <input type="number" id="assignmentPoints" name="assignmentPoints" required min="1" max="1000"
+                            placeholder="100" class="input-base w-full">
+                    </div>
+
+                    <!-- File Requirements -->
+                    <div>
+                        <label class="block text-sm font-medium text-text-primary mb-3">
+                            Submission Requirements
+                        </label>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="allowFileUpload" name="allowFileUpload" checked
+                                    class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                <label for="allowFileUpload" class="text-sm text-text-secondary cursor-pointer">
+                                    Allow file uploads
+                                </label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="allowTextSubmission" name="allowTextSubmission"
+                                    class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                <label for="allowTextSubmission" class="text-sm text-text-secondary cursor-pointer">
+                                    Allow text submission
+                                </label>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" id="allowLateSubmission" name="allowLateSubmission"
+                                    class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                <label for="allowLateSubmission" class="text-sm text-text-secondary cursor-pointer">
+                                    Allow late submissions (with penalty)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Attachment -->
+                    <div>
+                        <label for="assignmentAttachment" class="block text-sm font-medium text-text-primary mb-2">
+                            Attach Files (Optional)
+                        </label>
+                        <div class="border-2 border-dashed border-secondary-300 rounded-lg p-6 text-center hover:border-primary-600 transition-academic cursor-pointer">
+                            <input type="file" id="assignmentAttachment" name="assignmentAttachment" multiple class="hidden" accept=".pdf,.doc,.docx,.zip">
+                            <label for="assignmentAttachment" class="cursor-pointer">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1365bbced-1764677496485.png" alt="Upload icon" class="w-12 h-12 mx-auto mb-3">
+                                <p class="text-sm text-text-primary font-medium mb-1">Click to upload or drag and drop</p>
+                                <p class="text-xs text-text-secondary">PDF, DOC, DOCX, ZIP (max 10MB)</p>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="flex flex-col sm:flex-row gap-3 pt-4 border-t border-secondary-200">
+                        <button type="button" id="cancelModalBtn" class="btn-base bg-surface border border-secondary-300 text-text-primary hover:bg-secondary-50 active-press flex-1 sm:flex-initial">
+                            Cancel
+                        </button>
+                        <button type="button" class="btn-base bg-secondary-100 text-text-primary hover:bg-secondary-200 active-press flex-1 sm:flex-initial">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1060fc2e2-1765058708702.png" alt="Save draft icon" class="w-5 h-5">
+                            <span>Save as Draft</span>
+                        </button>
+                        <button type="submit" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press flex-1 sm:flex-initial">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f2686d47-1764790461149.png" alt="Publish icon" class="w-5 h-5">
+                            <span>Publish Assignment</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <svg class="w-8 h-8 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                        <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 24L32 18M24 24L16 18M24 24V36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="font-heading text-lg font-bold text-primary-600">EduTracker Pro</span>
+                </div>
+                <p class="text-sm text-text-secondary">© 2025 EduTracker Pro. All Rights Reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mock data for assignments
+        const mockAssignments = [
+            {
+                id: 1,
+                title: 'Binary Search Tree Implementation',
+                course: 'CS 201 - Data Structures',
+                courseCode: 'cs201',
+                dueDate: '2025-12-22',
+                dueTime: '23:59',
+                totalSubmissions: 45,
+                submittedCount: 38,
+                gradedCount: 12,
+                points: 100,
+                status: 'active',
+                description: 'Implement a complete binary search tree with insert, delete, and search operations.'
+            },
+            {
+                id: 2,
+                title: 'Sorting Algorithms Analysis',
+                course: 'CS 301 - Algorithms',
+                courseCode: 'cs301',
+                dueDate: '2025-12-20',
+                dueTime: '23:59',
+                totalSubmissions: 52,
+                submittedCount: 45,
+                gradedCount: 30,
+                points: 150,
+                status: 'active',
+                description: 'Compare and analyze the performance of different sorting algorithms.'
+            },
+            {
+                id: 3,
+                title: 'Database Design Project',
+                course: 'CS 401 - Software Engineering',
+                courseCode: 'cs401',
+                dueDate: '2025-12-25',
+                dueTime: '23:59',
+                totalSubmissions: 38,
+                submittedCount: 25,
+                gradedCount: 8,
+                points: 200,
+                status: 'active',
+                description: 'Design and implement a complete database schema for an e-commerce application.'
+            },
+            {
+                id: 4,
+                title: 'Python Basics Quiz',
+                course: 'CS 101 - Intro to Programming',
+                courseCode: 'cs101',
+                dueDate: '2025-12-18',
+                dueTime: '23:59',
+                totalSubmissions: 65,
+                submittedCount: 62,
+                gradedCount: 55,
+                points: 50,
+                status: 'active',
+                description: 'Test your understanding of Python fundamentals including variables, loops, and functions.'
+            },
+            {
+                id: 5,
+                title: 'Linked List Operations',
+                course: 'CS 201 - Data Structures',
+                courseCode: 'cs201',
+                dueDate: '2025-12-24',
+                dueTime: '23:59',
+                totalSubmissions: 45,
+                submittedCount: 30,
+                gradedCount: 15,
+                points: 75,
+                status: 'active',
+                description: 'Implement various operations on singly and doubly linked lists.'
+            },
+            {
+                id: 6,
+                title: 'Graph Traversal Algorithms',
+                course: 'CS 301 - Algorithms',
+                courseCode: 'cs301',
+                dueDate: '2025-12-28',
+                dueTime: '23:59',
+                totalSubmissions: 52,
+                submittedCount: 18,
+                gradedCount: 5,
+                points: 120,
+                status: 'active',
+                description: 'Implement BFS and DFS algorithms for graph traversal with visualization.'
+            },
+            {
+                id: 7,
+                title: 'Agile Development Case Study',
+                course: 'CS 401 - Software Engineering',
+                courseCode: 'cs401',
+                dueDate: '2025-12-30',
+                dueTime: '23:59',
+                totalSubmissions: 38,
+                submittedCount: 10,
+                gradedCount: 2,
+                points: 100,
+                status: 'active',
+                description: 'Analyze a real-world agile development project and present findings.'
+            },
+            {
+                id: 8,
+                title: 'Object-Oriented Programming Concepts',
+                course: 'CS 101 - Intro to Programming',
+                courseCode: 'cs101',
+                dueDate: '2025-12-26',
+                dueTime: '23:59',
+                totalSubmissions: 65,
+                submittedCount: 40,
+                gradedCount: 20,
+                points: 80,
+                status: 'active',
+                description: 'Demonstrate understanding of OOP principles through practical examples.'
+            }
+        ];
+
+        // Template data
+        const mockTemplates = [
+            {
+                id: 1,
+                title: 'Programming Assignment Template',
+                description: 'Standard template for coding assignments with rubric',
+                icon: 'mdi:code-braces',
+                color: 'primary'
+            },
+            {
+                id: 2,
+                title: 'Research Paper Template',
+                description: 'Template for research-based assignments',
+                icon: 'mdi:file-document-edit',
+                color: 'accent'
+            },
+            {
+                id: 3,
+                title: 'Quiz Template',
+                description: 'Quick assessment template with auto-grading',
+                icon: 'mdi:clipboard-text',
+                color: 'success'
+            },
+            {
+                id: 4,
+                title: 'Project Proposal Template',
+                description: 'Template for semester-long project proposals',
+                icon: 'mdi:lightbulb-on',
+                color: 'warning'
+            },
+            {
+                id: 5,
+                title: 'Lab Report Template',
+                description: 'Structured template for laboratory assignments',
+                icon: 'mdi:flask',
+                color: 'secondary'
+            }
+        ];
+
+        // DOM Elements
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const createAssignmentBtn = document.getElementById('createAssignmentBtn');
+        const createAssignmentModal = document.getElementById('createAssignmentModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const cancelModalBtn = document.getElementById('cancelModalBtn');
+        const createAssignmentForm = document.getElementById('createAssignmentForm');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const searchInput = document.getElementById('searchAssignments');
+        const clearSearchBtn = document.getElementById('clearSearch');
+        const courseFilter = document.getElementById('courseFilter');
+        const statusFilter = document.getElementById('statusFilter');
+        const resetFiltersBtn = document.getElementById('resetFilters');
+
+        // Mobile menu toggle
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal controls
+        createAssignmentBtn.addEventListener('click', function() {
+            createAssignmentModal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeModal() {
+            createAssignmentModal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeModal);
+        cancelModalBtn.addEventListener('click', closeModal);
+
+        createAssignmentModal.addEventListener('click', function(e) {
+            if (e.target === createAssignmentModal) {
+                closeModal();
+            }
+        });
+
+        // Tab switching
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const targetTab = this.getAttribute('data-tab');
+                
+                // Update button states
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active', 'text-primary-600', 'border-primary-600');
+                    btn.classList.add('text-text-secondary', 'border-transparent');
+                });
+                this.classList.add('active', 'text-primary-600', 'border-primary-600');
+                this.classList.remove('text-text-secondary', 'border-transparent');
+                
+                // Update content visibility
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.add('hidden');
+                });
+                
+                if (targetTab === 'active') {
+                    document.getElementById('activeTab').classList.remove('hidden');
+                } else if (targetTab === 'pending') {
+                    document.getElementById('pendingTab').classList.remove('hidden');
+                } else if (targetTab === 'completed') {
+                    document.getElementById('completedTab').classList.remove('hidden');
+                } else if (targetTab === 'templates') {
+                    document.getElementById('templatesTab').classList.remove('hidden');
+                    renderTemplates();
+                }
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            if (this.value.length > 0) {
+                clearSearchBtn.classList.remove('hidden');
+            } else {
+                clearSearchBtn.classList.add('hidden');
+            }
+            filterAssignments();
+        });
+
+        clearSearchBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            this.classList.add('hidden');
+            filterAssignments();
+        });
+
+        // Filter functionality
+        courseFilter.addEventListener('change', filterAssignments);
+        statusFilter.addEventListener('change', filterAssignments);
+
+        resetFiltersBtn.addEventListener('click', function() {
+            searchInput.value = '';
+            courseFilter.value = '';
+            statusFilter.value = '';
+            clearSearchBtn.classList.add('hidden');
+            filterAssignments();
+        });
+
+        // Filter assignments
+        function filterAssignments() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCourse = courseFilter.value;
+            const selectedStatus = statusFilter.value;
+
+            const filtered = mockAssignments.filter(assignment => {
+                const matchesSearch = assignment.title.toLowerCase().includes(searchTerm) ||
+                                    assignment.course.toLowerCase().includes(searchTerm);
+                const matchesCourse = !selectedCourse || assignment.courseCode === selectedCourse;
+                const matchesStatus = !selectedStatus || assignment.status === selectedStatus;
+
+                return matchesSearch && matchesCourse && matchesStatus;
+            });
+
+            renderAssignments(filtered);
+        }
+
+        // Render assignments
+        function renderAssignments(assignments) {
+            const tableBody = document.getElementById('activeAssignmentsTable');
+            const mobileContainer = document.getElementById('activeAssignmentsMobile');
+
+            // Desktop table view
+            tableBody.innerHTML = assignments.map(assignment => {
+                const submissionPercentage = Math.round((assignment.submittedCount / assignment.totalSubmissions) * 100);
+                const gradingPercentage = Math.round((assignment.gradedCount / assignment.submittedCount) * 100);
+                
+                return `
+                    <tr class="hover:bg-secondary-50 transition-academic">
+                        <td class="px-6 py-4">
+                            <input type="checkbox" class="assignment-checkbox w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer" data-id="${assignment.id}">
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-start gap-3">
+                                <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center">
+                                    <img src="https://api.iconify.design/mdi:file-document-edit.svg?color=%232563EB" alt="Assignment icon" class="w-5 h-5">
+                                </div>
+                                <div>
+                                    <h4 class="font-body font-semibold text-text-primary mb-1">${assignment.title}</h4>
+                                    <p class="text-sm text-text-secondary">${assignment.points} points</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="text-sm text-text-secondary">${assignment.course}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <img src="https://api.iconify.design/mdi:calendar.svg?color=%2364748B" alt="Calendar icon" class="w-4 h-4">
+                                <span class="text-sm text-text-primary">${formatDate(assignment.dueDate)}</span>
+                            </div>
+                            <span class="text-xs text-text-secondary">${assignment.dueTime}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="space-y-2">
+                                <div class="flex items-center justify-between text-sm">
+                                    <span class="text-text-secondary">Submitted:</span>
+                                    <span class="font-medium text-text-primary">${assignment.submittedCount}/${assignment.totalSubmissions}</span>
+                                </div>
+                                <div class="w-full bg-secondary-200 rounded-full h-2">
+                                    <div class="bg-primary-600 h-2 rounded-full transition-all" style="width: ${submissionPercentage}%"></div>
+                                </div>
+                                <div class="flex items-center justify-between text-xs">
+                                    <span class="text-text-secondary">Graded: ${assignment.gradedCount}</span>
+                                    <span class="text-warning-600">${assignment.submittedCount - assignment.gradedCount} pending</span>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-caption bg-success-50 text-success-600">
+                                <img src="https://api.iconify.design/mdi:circle.svg?color=%23059669" alt="Status indicator" class="w-2 h-2">
+                                Active
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center justify-end gap-2">
+                                <button type="button" class="touch-target rounded-lg hover:bg-secondary-100 transition-academic p-2" aria-label="View submissions">
+                                    <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%2364748B" alt="View icon" class="w-5 h-5">
+                                </button>
+                                <button type="button" class="touch-target rounded-lg hover:bg-secondary-100 transition-academic p-2" aria-label="Edit assignment">
+                                    <img src="https://api.iconify.design/mdi:pencil-outline.svg?color=%2364748B" alt="Edit icon" class="w-5 h-5">
+                                </button>
+                                <button type="button" class="touch-target rounded-lg hover:bg-error-50 transition-academic p-2" aria-label="Delete assignment">
+                                    <img src="https://api.iconify.design/mdi:delete-outline.svg?color=%23DC2626" alt="Delete icon" class="w-5 h-5">
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Mobile card view
+            mobileContainer.innerHTML = assignments.map(assignment => {
+                const submissionPercentage = Math.round((assignment.submittedCount / assignment.totalSubmissions) * 100);
+                
+                return `
+                    <div class="bg-surface rounded-card border border-secondary-200 p-4 shadow-academic-sm">
+                        <div class="flex items-start justify-between mb-3">
+                            <div class="flex items-start gap-3 flex-1">
+                                <input type="checkbox" class="assignment-checkbox w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer mt-1" data-id="${assignment.id}">
+                                <div class="flex-1">
+                                    <h4 class="font-body font-semibold text-text-primary mb-1">${assignment.title}</h4>
+                                    <p class="text-sm text-text-secondary mb-2">${assignment.course}</p>
+                                    <span class="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-caption bg-success-50 text-success-600">
+                                        <img src="https://api.iconify.design/mdi:circle.svg?color=%23059669" alt="Status indicator" class="w-2 h-2">
+                                        Active
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-3 mb-4">
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-text-secondary flex items-center gap-2">
+                                    <img src="https://api.iconify.design/mdi:calendar.svg?color=%2364748B" alt="Calendar icon" class="w-4 h-4">
+                                    Due Date
+                                </span>
+                                <span class="font-medium text-text-primary">${formatDate(assignment.dueDate)} ${assignment.dueTime}</span>
+                            </div>
+                            
+                            <div class="flex items-center justify-between text-sm">
+                                <span class="text-text-secondary">Points</span>
+                                <span class="font-medium text-text-primary">${assignment.points}</span>
+                            </div>
+                            
+                            <div>
+                                <div class="flex items-center justify-between text-sm mb-2">
+                                    <span class="text-text-secondary">Submissions</span>
+                                    <span class="font-medium text-text-primary">${assignment.submittedCount}/${assignment.totalSubmissions}</span>
+                                </div>
+                                <div class="w-full bg-secondary-200 rounded-full h-2">
+                                    <div class="bg-primary-600 h-2 rounded-full transition-all" style="width: ${submissionPercentage}%"></div>
+                                </div>
+                                <div class="flex items-center justify-between text-xs mt-1">
+                                    <span class="text-text-secondary">Graded: ${assignment.gradedCount}</span>
+                                    <span class="text-warning-600">${assignment.submittedCount - assignment.gradedCount} pending</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-2 pt-3 border-t border-secondary-200">
+                            <button type="button" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press flex-1 text-sm">
+                                <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%23FFFFFF" alt="View icon" class="w-4 h-4">
+                                <span>View</span>
+                            </button>
+                            <button type="button" class="btn-base bg-secondary-100 text-text-primary hover:bg-secondary-200 active-press flex-1 text-sm">
+                                <img src="https://api.iconify.design/mdi:pencil-outline.svg?color=%231F2937" alt="Edit icon" class="w-4 h-4">
+                                <span>Edit</span>
+                            </button>
+                            <button type="button" class="touch-target rounded-lg hover:bg-error-50 transition-academic p-2" aria-label="Delete assignment">
+                                <img src="https://api.iconify.design/mdi:delete-outline.svg?color=%23DC2626" alt="Delete icon" class="w-5 h-5">
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render templates
+        function renderTemplates() {
+            const templatesContainer = document.getElementById('templatesTab');
+            
+            const colorMap = {
+                primary: { bg: 'bg-primary-50', icon: '%232563EB' },
+                accent: { bg: 'bg-accent-50', icon: '%23F59E0B' },
+                success: { bg: 'bg-success-50', icon: '%23059669' },
+                warning: { bg: 'bg-warning-50', icon: '%23D97706' },
+                secondary: { bg: 'bg-secondary-100', icon: '%2364748B' }
+            };
+
+            templatesContainer.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    ${mockTemplates.map(template => {
+                        const colors = colorMap[template.color];
+                        return `
+                            <div class="bg-surface rounded-card border border-secondary-200 p-6 shadow-academic-sm hover:shadow-academic-md transition-academic cursor-pointer">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div class="w-12 h-12 rounded-lg ${colors.bg} flex items-center justify-center">
+                                        <img src="https://api.iconify.design/${template.icon}.svg?color=${colors.icon}" alt="${template.title} icon" class="w-6 h-6">
+                                    </div>
+                                    <button type="button" class="touch-target rounded-lg hover:bg-secondary-100 transition-academic p-2" aria-label="Template options">
+                                        <img src="https://api.iconify.design/mdi:dots-vertical.svg?color=%2364748B" alt="Options icon" class="w-5 h-5">
+                                    </button>
+                                </div>
+                                <h3 class="font-body font-semibold text-text-primary mb-2">${template.title}</h3>
+                                <p class="text-sm text-text-secondary mb-4">${template.description}</p>
+                                <button type="button" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press w-full">
+                                    <img src="https://api.iconify.design/mdi:plus.svg?color=%23FFFFFF" alt="Use template icon" class="w-5 h-5">
+                                    <span>Use Template</span>
+                                </button>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+        }
+
+        // Format date helper
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        // Form submission
+        createAssignmentForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate form submission
+            const formData = new FormData(this);
+            console.log('Assignment created:', Object.fromEntries(formData));
+            
+            // Show success message (in real app, this would be a toast notification)
+            alert('Assignment created successfully!');
+            
+            closeModal();
+            this.reset();
+        });
+
+        // Select all checkbox
+        document.getElementById('selectAllActive').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.assignment-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // File upload preview
+        document.getElementById('assignmentAttachment').addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            if (files.length > 0) {
+                console.log('Files selected:', files.map(f => f.name));
+                // In real app, show file preview
+            }
+        });
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            renderAssignments(mockAssignments);
+            
+            // Set minimum date for due date input to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dueDate').setAttribute('min', today);
+        });
+
+        // Check authentication
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (isLoggedIn !== 'true' || (userRole !== 'faculty' && userRole !== 'administrator')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>

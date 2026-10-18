@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="EduTracker Pro - Comprehensive course management system for enrollment, scheduling, and academic calendar integration">
+    <title>Course Management - EduTracker Pro</title>
+    <link rel="stylesheet" href="../css/main.css">
+  <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fedutracker9740back.builtwithrocket.new&_be=https%3A%2F%2Fapplication.rocket.new&_v=0.1.12"></script>
+  <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.1"></script>
+  </head>
+<body class="bg-background min-h-screen">
+    
+    <!-- Header Navigation -->
+    <header class="bg-surface border-b border-secondary-200 sticky top-0 z-navigation shadow-academic-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo and Brand -->
+                <div class="flex items-center gap-3">
+                    <svg class="w-10 h-10 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                        <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M24 24L32 18M24 24L16 18M24 24V36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <div class="hidden sm:block">
+                        <h1 class="font-heading text-xl font-bold text-primary-600">EduTracker Pro</h1>
+                        <p class="text-xs text-text-secondary">Course Management</p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-1">
+                    <a href="faculty_dashboard.html" class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic">
+                        Dashboard
+                    </a>
+                    <a href="attendance_management.html" class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic">
+                        Attendance
+                    </a>
+                    <a href="assignment_management.html" class="px-4 py-2 text-sm font-medium text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic">
+                        Assignments
+                    </a>
+                    <a href="course_management.html" class="px-4 py-2 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">
+                        Courses
+                    </a>
+                </nav>
+
+                <!-- User Profile & Actions -->
+                <div class="flex items-center gap-3">
+                    <button type="button" class="touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="Notifications">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_173f2b762-1764656741096.png" alt="Notifications icon" class="w-6 h-6">
+                    </button>
+                    
+                    <div class="relative" id="userMenuContainer">
+                        <button type="button" id="userMenuButton" class="flex items-center gap-2 px-3 py-2 hover:bg-secondary-50 rounded-lg transition-academic" aria-label="User menu">
+                            <div class="w-8 h-8 rounded-full bg-primary-100 flex items-center justify-center">
+                                <span class="text-sm font-semibold text-primary-600">FU</span>
+                            </div>
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_117a4830d-1764671721354.png" alt="Menu dropdown icon" class="w-5 h-5 hidden sm:block">
+                        </button>
+                        
+                        <!-- Dropdown Menu -->
+                        <div id="userDropdown" class="hidden absolute right-0 mt-2 w-56 bg-surface rounded-card shadow-academic-lg border border-secondary-200 overflow-hidden z-dropdown">
+                            <div class="px-4 py-3 border-b border-secondary-200">
+                                <p class="text-sm font-semibold text-text-primary">Faculty User</p>
+                                <p class="text-xs text-text-secondary">faculty@college.edu</p>
+                            </div>
+                            <div class="py-2">
+                                <a href="faculty_dashboard.html" class="flex items-center gap-3 px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 transition-academic">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10ccfe998-1764693353123.png" alt="Dashboard icon" class="w-5 h-5">
+                                    <span>Dashboard</span>
+                                </a>
+                                <a href="javascript:void(0)" class="flex items-center gap-3 px-4 py-2 text-sm text-text-secondary hover:bg-secondary-50 transition-academic">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c1401c11-1764670657600.png" alt="Profile icon" class="w-5 h-5">
+                                    <span>Profile Settings</span>
+                                </a>
+                                <button type="button" id="logoutButton" class="w-full flex items-center gap-3 px-4 py-2 text-sm text-error-600 hover:bg-error-50 transition-academic">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1a00a4786-1764644054571.png" alt="Logout icon" class="w-5 h-5">
+                                    <span>Logout</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button type="button" id="mobileMenuButton" class="md:hidden touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="Toggle mobile menu">
+                        <img id="mobileMenuIcon" src="https://img.rocket.new/generatedImages/rocket_gen_img_1bd13d883-1764678164691.png" alt="Menu icon" class="w-6 h-6">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-t border-secondary-200 bg-surface">
+            <nav class="px-4 py-3 space-y-1">
+                <a href="faculty_dashboard.html" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_10ccfe998-1764693353123.png" alt="Dashboard icon" class="w-5 h-5">
+                    <span>Dashboard</span>
+                </a>
+                <a href="attendance_management.html" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1f4803e13-1765047647414.png" alt="Attendance icon" class="w-5 h-5">
+                    <span>Attendance</span>
+                </a>
+                <a href="assignment_management.html" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-text-secondary hover:bg-primary-50 hover:text-primary-600 rounded-lg transition-academic">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1c13375db-1764650244021.png" alt="Assignments icon" class="w-5 h-5">
+                    <span>Assignments</span>
+                </a>
+                <a href="course_management.html" class="flex items-center gap-3 px-4 py-3 text-sm font-medium text-primary-600 bg-primary-50 rounded-lg">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d9605b5f-1764677495796.png" alt="Courses icon" class="w-5 h-5">
+                    <span>Courses</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
+        
+        <!-- Page Header -->
+        <div class="mb-6 lg:mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                    <h1 class="font-heading text-3xl lg:text-4xl font-bold text-text-primary mb-2">Course Management</h1>
+                    <p class="text-text-secondary">Manage course enrollment, scheduling, and academic calendar integration</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <button type="button" id="exportButton" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1311ca2f7-1764633684239.png" alt="Export icon" class="w-5 h-5">
+                        <span class="hidden sm:inline">Export</span>
+                    </button>
+                    <button type="button" id="addCourseButton" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_136c02a7b-1765603334044.png" alt="Add course icon" class="w-5 h-5">
+                        <span>Add Course</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Selection & Filters -->
+        <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200 p-4 lg:p-6 mb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Course Selection -->
+                <div>
+                    <label for="courseSelect" class="block text-sm font-medium text-text-primary mb-2">
+                        Select Course
+                    </label>
+                    <div class="relative">
+                        <select id="courseSelect" class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            <option value="CS101">CS101 - Introduction to Programming</option>
+                            <option value="CS201">CS201 - Data Structures</option>
+                            <option value="CS301">CS301 - Database Systems</option>
+                            <option value="MATH101">MATH101 - Calculus I</option>
+                            <option value="ENG101">ENG101 - English Composition</option>
+                        </select>
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none">
+                    </div>
+                </div>
+
+                <!-- Semester Filter -->
+                <div>
+                    <label for="semesterFilter" class="block text-sm font-medium text-text-primary mb-2">
+                        Semester
+                    </label>
+                    <div class="relative">
+                        <select id="semesterFilter" class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            <option value="fall2025">Fall 2025</option>
+                            <option value="spring2025">Spring 2025</option>
+                            <option value="fall2024">Fall 2024</option>
+                        </select>
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none">
+                    </div>
+                </div>
+
+                <!-- Status Filter -->
+                <div>
+                    <label for="statusFilter" class="block text-sm font-medium text-text-primary mb-2">
+                        Enrollment Status
+                    </label>
+                    <div class="relative">
+                        <select id="statusFilter" class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            <option value="all">All Students</option>
+                            <option value="active">Active</option>
+                            <option value="pending">Pending Approval</option>
+                            <option value="dropped">Dropped</option>
+                        </select>
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none">
+                    </div>
+                </div>
+
+                <!-- Search -->
+                <div>
+                    <label for="studentSearch" class="block text-sm font-medium text-text-primary mb-2">
+                        Search Students
+                    </label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_194eeb027-1764656322629.png" alt="Search icon" class="w-5 h-5">
+                        </div>
+                        <input type="text" id="studentSearch" placeholder="Name or ID..." class="input-base w-full pl-12 focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Course Details & Enrollment Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+            
+            <!-- Course Information Card -->
+            <div class="lg:col-span-1 space-y-6">
+                <!-- Course Details -->
+                <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200 p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h2 class="font-heading text-xl font-semibold text-text-primary">Course Details</h2>
+                        <button type="button" class="touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="Edit course">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_114850d07-1765884833161.png" alt="Edit icon" class="w-5 h-5">
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-sm text-text-secondary mb-1">Course Code</p>
+                            <p class="font-semibold text-text-primary">CS101</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-text-secondary mb-1">Course Name</p>
+                            <p class="font-semibold text-text-primary">Introduction to Programming</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-text-secondary mb-1">Credits</p>
+                            <p class="font-semibold text-text-primary">3 Credits</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-text-secondary mb-1">Instructor</p>
+                            <p class="font-semibold text-text-primary">Dr. Sarah Johnson</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-text-secondary mb-1">Department</p>
+                            <p class="font-semibold text-text-primary">Computer Science</p>
+                        </div>
+                        <div class="pt-4 border-t border-secondary-200">
+                            <p class="text-sm text-text-secondary mb-1">Enrollment Capacity</p>
+                            <div class="flex items-center gap-2">
+                                <div class="flex-1 bg-secondary-100 rounded-full h-2 overflow-hidden">
+                                    <div class="bg-primary-600 h-full" style="width: 75%"></div>
+                                </div>
+                                <span class="text-sm font-semibold text-text-primary">45/60</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Schedule Information -->
+                <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200 p-6">
+                    <div class="flex items-start justify-between mb-4">
+                        <h2 class="font-heading text-xl font-semibold text-text-primary">Class Schedule</h2>
+                        <button type="button" class="touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="Edit schedule">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_114850d07-1765884833161.png" alt="Edit icon" class="w-5 h-5">
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-primary-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1392c821a-1765081691587.png" alt="Time icon" class="w-5 h-5">
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Class Times</p>
+                                <p class="text-sm text-text-secondary">Mon, Wed, Fri</p>
+                                <p class="text-sm text-text-secondary">10:00 AM - 11:30 AM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_173e08cba-1764653070105.png" alt="Location icon" class="w-5 h-5">
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Room Assignment</p>
+                                <p class="text-sm text-text-secondary">Building A, Room 301</p>
+                                <p class="text-sm text-text-secondary">Capacity: 60 seats</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start gap-3">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-lg bg-success-50 flex items-center justify-center">
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1000df61f-1764828049543.png" alt="Calendar icon" class="w-5 h-5">
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium text-text-primary">Semester Period</p>
+                                <p class="text-sm text-text-secondary">Aug 28, 2025 - Dec 15, 2025</p>
+                                <p class="text-sm text-text-secondary">15 weeks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200 p-6">
+                    <h2 class="font-heading text-xl font-semibold text-text-primary mb-4">Quick Actions</h2>
+                    <div class="space-y-2">
+                        <button type="button" class="w-full btn-base bg-primary-50 text-primary-600 hover:bg-primary-100 justify-start active-press">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1cd75c7bd-1765953439575.png" alt="Bulk enroll icon" class="w-5 h-5">
+                            <span>Bulk Enrollment</span>
+                        </button>
+                        <button type="button" class="w-full btn-base bg-secondary-50 text-secondary-700 hover:bg-secondary-100 justify-start active-press">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15bc631f0-1764822969406.png" alt="Sync calendar icon" class="w-5 h-5">
+                            <span>Sync Calendar</span>
+                        </button>
+                        <button type="button" class="w-full btn-base bg-secondary-50 text-secondary-700 hover:bg-secondary-100 justify-start active-press">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18bcc7034-1764644063851.png" alt="Generate report icon" class="w-5 h-5">
+                            <span>Generate Report</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enrollment Roster -->
+            <div class="lg:col-span-2">
+                <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200">
+                    <!-- Table Header -->
+                    <div class="p-4 lg:p-6 border-b border-secondary-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <div>
+                                <h2 class="font-heading text-xl font-semibold text-text-primary mb-1">Enrollment Roster</h2>
+                                <p class="text-sm text-text-secondary">45 students enrolled</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <button type="button" id="bulkActionsButton" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_177fb76fc-1764634750407.png" alt="Bulk actions icon" class="w-5 h-5">
+                                    <span class="hidden sm:inline">Bulk Actions</span>
+                                </button>
+                                <button type="button" id="enrollStudentButton" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d69b5aa1-1765366077848.png" alt="Enroll student icon" class="w-5 h-5">
+                                    <span class="hidden sm:inline">Enroll Student</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Desktop Table View -->
+                    <div class="hidden md:block overflow-x-auto">
+                        <table class="w-full">
+                            <thead class="bg-secondary-50 border-b border-secondary-200">
+                                <tr>
+                                    <th class="px-6 py-3 text-left">
+                                        <input type="checkbox" id="selectAll" class="w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer">
+                                    </th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Student</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Student ID</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Enrollment Date</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Status</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-text-secondary uppercase tracking-wider">Standing</th>
+                                    <th class="px-6 py-3 text-right text-xs font-semibold text-text-secondary uppercase tracking-wider">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="enrollmentTableBody" class="divide-y divide-secondary-200">
+                                <!-- Table rows will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Mobile Card View -->
+                    <div id="enrollmentMobileView" class="md:hidden divide-y divide-secondary-200">
+                        <!-- Mobile cards will be populated by JavaScript -->
+                    </div>
+
+                    <!-- Table Footer -->
+                    <div class="px-4 lg:px-6 py-4 border-t border-secondary-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                            <p class="text-sm text-text-secondary">
+                                Showing <span class="font-semibold text-text-primary">1-10</span> of <span class="font-semibold text-text-primary">45</span> students
+                            </p>
+                            <div class="flex items-center gap-2">
+                                <button type="button" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press disabled:opacity-50" disabled>
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1d20b942a-1764648753700.png" alt="Previous page icon" class="w-5 h-5">
+                                </button>
+                                <button type="button" class="btn-base bg-primary-600 text-white">1</button>
+                                <button type="button" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">2</button>
+                                <button type="button" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">3</button>
+                                <button type="button" class="btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">
+                                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_18c5599b3-1764659695886.png" alt="Next page icon" class="w-5 h-5">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Calendar Integration -->
+        <div class="bg-surface rounded-card shadow-academic-sm border border-secondary-200 p-4 lg:p-6">
+            <div class="flex items-center justify-between mb-6">
+                <div>
+                    <h2 class="font-heading text-xl font-semibold text-text-primary mb-1">Academic Calendar</h2>
+                    <p class="text-sm text-text-secondary">Important dates and deadlines for Fall 2025</p>
+                </div>
+                <button type="button" class="btn-base bg-primary-50 text-primary-600 hover:bg-primary-100 active-press">
+                    <img src="https://img.rocket.new/generatedImages/rocket_gen_img_15ab3a2c4-1764634748447.png" alt="Add event icon" class="w-5 h-5">
+                    <span class="hidden sm:inline">Add Event</span>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Calendar Event Card 1 -->
+                <div class="bg-primary-50 rounded-lg p-4 border border-primary-200">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-primary-600 flex flex-col items-center justify-center text-white">
+                            <span class="text-xs font-semibold">AUG</span>
+                            <span class="text-lg font-bold">28</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-text-primary mb-1">Semester Begins</h3>
+                            <p class="text-sm text-text-secondary">First day of classes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Event Card 2 -->
+                <div class="bg-accent-50 rounded-lg p-4 border border-accent-200">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-accent-600 flex flex-col items-center justify-center text-white">
+                            <span class="text-xs font-semibold">SEP</span>
+                            <span class="text-lg font-bold">15</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-text-primary mb-1">Add/Drop Deadline</h3>
+                            <p class="text-sm text-text-secondary">Last day to modify enrollment</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Event Card 3 -->
+                <div class="bg-secondary-50 rounded-lg p-4 border border-secondary-200">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-secondary-600 flex flex-col items-center justify-center text-white">
+                            <span class="text-xs font-semibold">OCT</span>
+                            <span class="text-lg font-bold">20</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-text-primary mb-1">Midterm Exams</h3>
+                            <p class="text-sm text-text-secondary">Week of midterm assessments</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendar Event Card 4 -->
+                <div class="bg-success-50 rounded-lg p-4 border border-success-200">
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0 w-12 h-12 rounded-lg bg-success-600 flex flex-col items-center justify-center text-white">
+                            <span class="text-xs font-semibold">DEC</span>
+                            <span class="text-lg font-bold">15</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-text-primary mb-1">Semester Ends</h3>
+                            <p class="text-sm text-text-secondary">Final exams complete</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-surface border-t border-secondary-200 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-2">
+                    <svg class="w-6 h-6 text-primary-600" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="8" y="8" width="32" height="32" rx="6" fill="currentColor" opacity="0.1"/>
+                        <path d="M24 12L32 18V30L24 36L16 30V18L24 12Z" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="text-sm text-text-secondary">© 2025 EduTracker Pro. All Rights Reserved.</span>
+                </div>
+                <div class="flex items-center gap-6">
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Privacy Policy</a>
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Terms of Service</a>
+                    <a href="javascript:void(0)" class="text-sm text-text-secondary hover:text-primary-600 transition-academic">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    
+    <!-- Add Course Modal -->
+    <div id="addCourseModal" class="hidden fixed inset-0 z-modal backdrop-academic">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-surface rounded-modal shadow-academic-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-6 border-b border-secondary-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-heading text-2xl font-bold text-text-primary">Add New Course</h3>
+                        <button type="button" class="closeModal touch-target p-2 text-text-secondary hover:text-error-600 hover:bg-error-50 rounded-lg transition-academic" aria-label="Close modal">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1554e9426-1764677494627.png" alt="Close icon" class="w-6 h-6">
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <form id="addCourseForm" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="courseCode" class="block text-sm font-medium text-text-primary mb-2">Course Code *</label>
+                                <input type="text" id="courseCode" required placeholder="e.g., CS101" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            </div>
+                            <div>
+                                <label for="courseName" class="block text-sm font-medium text-text-primary mb-2">Course Name *</label>
+                                <input type="text" id="courseName" required placeholder="e.g., Introduction to Programming" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="credits" class="block text-sm font-medium text-text-primary mb-2">Credits *</label>
+                                <input type="number" id="credits" required min="1" max="6" placeholder="3" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            </div>
+                            <div>
+                                <label for="capacity" class="block text-sm font-medium text-text-primary mb-2">Capacity *</label>
+                                <input type="number" id="capacity" required min="1" placeholder="60" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="instructor" class="block text-sm font-medium text-text-primary mb-2">Instructor *</label>
+                            <input type="text" id="instructor" required placeholder="Dr. Sarah Johnson" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                        </div>
+
+                        <div>
+                            <label for="department" class="block text-sm font-medium text-text-primary mb-2">Department *</label>
+                            <div class="relative">
+                                <select id="department" required class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                                    <option value="">Select department...</option>
+                                    <option value="cs">Computer Science</option>
+                                    <option value="math">Mathematics</option>
+                                    <option value="eng">Engineering</option>
+                                    <option value="business">Business</option>
+                                </select>
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-secondary-200">
+                            <button type="button" class="closeModal btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press">
+                                Add Course
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enroll Student Modal -->
+    <div id="enrollStudentModal" class="hidden fixed inset-0 z-modal backdrop-academic">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-surface rounded-modal shadow-academic-xl max-w-lg w-full animate-scale-in">
+                <div class="p-6 border-b border-secondary-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-heading text-2xl font-bold text-text-primary">Enroll Student</h3>
+                        <button type="button" class="closeModal touch-target p-2 text-text-secondary hover:text-error-600 hover:bg-error-50 rounded-lg transition-academic" aria-label="Close modal">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1554e9426-1764677494627.png" alt="Close icon" class="w-6 h-6">
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <form id="enrollStudentForm" class="space-y-6">
+                        <div>
+                            <label for="studentId" class="block text-sm font-medium text-text-primary mb-2">Student ID *</label>
+                            <input type="text" id="studentId" required placeholder="e.g., STU2025001" class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                        </div>
+
+                        <div>
+                            <label for="enrollmentDate" class="block text-sm font-medium text-text-primary mb-2">Enrollment Date *</label>
+                            <input type="date" id="enrollmentDate" required class="input-base w-full focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                        </div>
+
+                        <div>
+                            <label for="enrollmentStatus" class="block text-sm font-medium text-text-primary mb-2">Status *</label>
+                            <div class="relative">
+                                <select id="enrollmentStatus" required class="input-base w-full appearance-none pr-10 cursor-pointer focus:ring-2 focus:ring-primary-600 focus:border-primary-600">
+                                    <option value="active">Active</option>
+                                    <option value="pending">Pending Approval</option>
+                                </select>
+                                <img src="https://img.rocket.new/generatedImages/rocket_gen_img_19bc69324-1764656753443.png" alt="Dropdown icon" class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-end gap-3 pt-4 border-t border-secondary-200">
+                            <button type="button" class="closeModal btn-base bg-secondary-100 text-secondary-700 hover:bg-secondary-200 active-press">
+                                Cancel
+                            </button>
+                            <button type="submit" class="btn-base bg-primary-600 text-white hover:bg-primary-700 active-press">
+                                Enroll Student
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export Options Modal -->
+    <div id="exportModal" class="hidden fixed inset-0 z-modal backdrop-academic">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-surface rounded-modal shadow-academic-xl max-w-md w-full animate-scale-in">
+                <div class="p-6 border-b border-secondary-200">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-heading text-2xl font-bold text-text-primary">Export Options</h3>
+                        <button type="button" class="closeModal touch-target p-2 text-text-secondary hover:text-error-600 hover:bg-error-50 rounded-lg transition-academic" aria-label="Close modal">
+                            <img src="https://img.rocket.new/generatedImages/rocket_gen_img_1554e9426-1764677494627.png" alt="Close icon" class="w-6 h-6">
+                        </button>
+                    </div>
+                </div>
+                <div class="p-6 space-y-3">
+                    <button type="button" class="w-full btn-base bg-error-50 text-error-600 hover:bg-error-100 justify-start active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_11aae1b4d-1764698241900.png" alt="PDF icon" class="w-5 h-5">
+                        <span>Export as PDF</span>
+                    </button>
+                    <button type="button" class="w-full btn-base bg-success-50 text-success-600 hover:bg-success-100 justify-start active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_17edf0e74-1764655974577.png" alt="Excel icon" class="w-5 h-5">
+                        <span>Export as Excel</span>
+                    </button>
+                    <button type="button" class="w-full btn-base bg-secondary-50 text-secondary-700 hover:bg-secondary-100 justify-start active-press">
+                        <img src="https://img.rocket.new/generatedImages/rocket_gen_img_147a93d4b-1764648750076.png" alt="CSV icon" class="w-5 h-5">
+                        <span>Export as CSV</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mock enrollment data
+        const mockEnrollmentData = [
+            { id: 1, name: 'Emily Rodriguez', studentId: 'STU2025001', enrollmentDate: '08/28/2025', status: 'active', standing: 'Good', avatar: 'ER' },
+            { id: 2, name: 'Michael Chen', studentId: 'STU2025002', enrollmentDate: '08/28/2025', status: 'active', standing: 'Good', avatar: 'MC' },
+            { id: 3, name: 'Sarah Williams', studentId: 'STU2025003', enrollmentDate: '08/29/2025', status: 'active', standing: 'Excellent', avatar: 'SW' },
+            { id: 4, name: 'James Anderson', studentId: 'STU2025004', enrollmentDate: '08/28/2025', status: 'pending', standing: 'Good', avatar: 'JA' },
+            { id: 5, name: 'Olivia Martinez', studentId: 'STU2025005', enrollmentDate: '08/30/2025', status: 'active', standing: 'Good', avatar: 'OM' },
+            { id: 6, name: 'David Thompson', studentId: 'STU2025006', enrollmentDate: '08/28/2025', status: 'active', standing: 'Excellent', avatar: 'DT' },
+            { id: 7, name: 'Sophia Garcia', studentId: 'STU2025007', enrollmentDate: '08/29/2025', status: 'active', standing: 'Good', avatar: 'SG' },
+            { id: 8, name: 'Daniel Lee', studentId: 'STU2025008', enrollmentDate: '08/28/2025', status: 'active', standing: 'Good', avatar: 'DL' },
+            { id: 9, name: 'Emma Wilson', studentId: 'STU2025009', enrollmentDate: '09/01/2025', status: 'pending', standing: 'Good', avatar: 'EW' },
+            { id: 10, name: 'Alexander Brown', studentId: 'STU2025010', enrollmentDate: '08/28/2025', status: 'active', standing: 'Excellent', avatar: 'AB' }
+        ];
+
+        // Populate enrollment table
+        function populateEnrollmentTable() {
+            const tableBody = document.getElementById('enrollmentTableBody');
+            const mobileView = document.getElementById('enrollmentMobileView');
+            
+            tableBody.innerHTML = '';
+            mobileView.innerHTML = '';
+
+            mockEnrollmentData.forEach(student => {
+                // Desktop table row
+                const row = document.createElement('tr');
+                row.className = 'hover:bg-secondary-50 transition-academic';
+                row.innerHTML = `
+                    <td class="px-6 py-4">
+                        <input type="checkbox" class="student-checkbox w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer" data-id="${student.id}">
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-3">
+                            <div class="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                                <span class="text-sm font-semibold text-primary-600">${student.avatar}</span>
+                            </div>
+                            <div>
+                                <p class="font-semibold text-text-primary">${student.name}</p>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="font-mono text-sm text-text-secondary">${student.studentId}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="text-sm text-text-secondary">${student.enrollmentDate}</span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                            student.status === 'active' ? 'bg-success-50 text-success-700' :
+                            student.status === 'pending' ? 'bg-warning-50 text-warning-700' :
+                            'bg-error-50 text-error-700'
+                        }">
+                            ${student.status.charAt(0).toUpperCase() + student.status.slice(1)}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                            student.standing === 'Excellent' ? 'bg-success-50 text-success-700' :
+                            'bg-primary-50 text-primary-700'
+                        }">
+                            ${student.standing}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-right">
+                        <div class="flex items-center justify-end gap-2">
+                            <button type="button" class="touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="View student profile">
+                                <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%2364748B" alt="View icon" class="w-5 h-5">
+                            </button>
+                            <button type="button" class="touch-target p-2 text-text-secondary hover:text-error-600 hover:bg-error-50 rounded-lg transition-academic" aria-label="Remove student">
+                                <img src="https://api.iconify.design/mdi:delete-outline.svg?color=%2364748B" alt="Delete icon" class="w-5 h-5">
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+
+                // Mobile card
+                const card = document.createElement('div');
+                card.className = 'p-4';
+                card.innerHTML = `
+                    <div class="flex items-start gap-4">
+                        <input type="checkbox" class="student-checkbox mt-1 w-4 h-4 text-primary-600 border-secondary-300 rounded focus:ring-2 focus:ring-primary-600 cursor-pointer" data-id="${student.id}">
+                        <div class="flex-1 min-w-0">
+                            <div class="flex items-center gap-3 mb-3">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center">
+                                    <span class="text-sm font-semibold text-primary-600">${student.avatar}</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="font-semibold text-text-primary">${student.name}</p>
+                                    <p class="font-mono text-sm text-text-secondary">${student.studentId}</p>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 mb-3">
+                                <div>
+                                    <p class="text-xs text-text-secondary mb-1">Enrollment Date</p>
+                                    <p class="text-sm font-medium text-text-primary">${student.enrollmentDate}</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-text-secondary mb-1">Standing</p>
+                                    <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                                        student.standing === 'Excellent' ? 'bg-success-50 text-success-700' :
+                                        'bg-primary-50 text-primary-700'
+                                    }">
+                                        ${student.standing}
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                                    student.status === 'active' ? 'bg-success-50 text-success-700' :
+                                    student.status === 'pending' ? 'bg-warning-50 text-warning-700' :
+                                    'bg-error-50 text-error-700'
+                                }">
+                                    ${student.status.charAt(0).toUpperCase() + student.status.slice(1)}
+                                </span>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" class="touch-target p-2 text-text-secondary hover:text-primary-600 hover:bg-primary-50 rounded-lg transition-academic" aria-label="View student">
+                                        <img src="https://api.iconify.design/mdi:eye-outline.svg?color=%2364748B" alt="View icon" class="w-5 h-5">
+                                    </button>
+                                    <button type="button" class="touch-target p-2 text-text-secondary hover:text-error-600 hover:bg-error-50 rounded-lg transition-academic" aria-label="Remove student">
+                                        <img src="https://api.iconify.design/mdi:delete-outline.svg?color=%2364748B" alt="Delete icon" class="w-5 h-5">
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                mobileView.appendChild(card);
+            });
+        }
+
+        // Initialize table
+        populateEnrollmentTable();
+
+        // User menu dropdown
+        const userMenuButton = document.getElementById('userMenuButton');
+        const userDropdown = document.getElementById('userDropdown');
+        
+        userMenuButton.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', function(e) {
+            if (!userDropdown.classList.contains('hidden') && !userDropdown.contains(e.target)) {
+                userDropdown.classList.add('hidden');
+            }
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileMenuIcon = document.getElementById('mobileMenuIcon');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenuIcon.src = 'https://api.iconify.design/mdi:menu.svg?color=%2364748B';
+                mobileMenuIcon.alt = 'Menu icon';
+            } else {
+                mobileMenuIcon.src = 'https://api.iconify.design/mdi:close.svg?color=%2364748B';
+                mobileMenuIcon.alt = 'Close menu icon';
+            }
+        });
+
+        // Modal handling
+        const addCourseButton = document.getElementById('addCourseButton');
+        const addCourseModal = document.getElementById('addCourseModal');
+        const enrollStudentButton = document.getElementById('enrollStudentButton');
+        const enrollStudentModal = document.getElementById('enrollStudentModal');
+        const exportButton = document.getElementById('exportButton');
+        const exportModal = document.getElementById('exportModal');
+        const closeModalButtons = document.querySelectorAll('.closeModal');
+
+        addCourseButton.addEventListener('click', () => {
+            addCourseModal.classList.remove('hidden');
+        });
+
+        enrollStudentButton.addEventListener('click', () => {
+            enrollStudentModal.classList.remove('hidden');
+        });
+
+        exportButton.addEventListener('click', () => {
+            exportModal.classList.remove('hidden');
+        });
+
+        closeModalButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                this.closest('.fixed').classList.add('hidden');
+            });
+        });
+
+        // Close modals on backdrop click
+        [addCourseModal, enrollStudentModal, exportModal].forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.add('hidden');
+                }
+            });
+        });
+
+        // Form submissions
+        document.getElementById('addCourseForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Course added successfully!');
+            addCourseModal.classList.add('hidden');
+            this.reset();
+        });
+
+        document.getElementById('enrollStudentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Student enrolled successfully!');
+            enrollStudentModal.classList.add('hidden');
+            this.reset();
+            populateEnrollmentTable();
+        });
+
+        // Select all checkbox
+        const selectAllCheckbox = document.getElementById('selectAll');
+        selectAllCheckbox.addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('.student-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
+
+        // Search functionality
+        const studentSearch = document.getElementById('studentSearch');
+        studentSearch.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            // Filter logic would go here
+            console.log('Searching for:', searchTerm);
+        });
+
+        // Logout functionality
+        document.getElementById('logoutButton').addEventListener('click', function() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('userEmail');
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Check authentication
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const userRole = localStorage.getItem('userRole');
+            
+            if (isLoggedIn !== 'true' || (userRole !== 'faculty' && userRole !== 'administrator')) {
+                window.location.href = 'login.html';
+            }
+        });
+    </script>
+<script id="dhws-dataInjector" src="../public/dhws-data-injector.js"></script>
+</body>
+</html>
